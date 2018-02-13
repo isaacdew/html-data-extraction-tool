@@ -6,7 +6,7 @@ This tool is for extracting data from HTML tables and inserting the data into an
 To install simply download the file and put it into your HTML/Public folder on your LAMP Server.
 
 ### Usage
-The form is pretty straight forward. Just note that tag input will usually simply be the TD tags and that any special cases (<td valign="top") will need the quotes to be escaped (<td valign=/\"top/\"). If you are running into SQL errors you can uncomment the echo SQL and echo SQL Error lines.
+The form is pretty straight forward. Just note that tag input will usually simply be the TD tags and that any special cases (<td valign="top") will need the quotes to be escaped (<td valign=\\"top\\"). If you are running into SQL errors you can uncomment the echo SQL and echo SQL Error lines.
 
 ## MIT License
 Copyright 2018 Isaac Dew
