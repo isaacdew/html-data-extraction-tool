@@ -2,7 +2,7 @@
     <title>Html Data Extraction Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -82,12 +82,15 @@ if($_POST) {
     }
 }
 ?>
-
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="card">
+           <div class="col">
+               
+           </div>
+            <div class="col-md-8">
+                <div class="card" style="margin-top:15px;">
                     <div class="card-body">
-                        <form action="parse_hipaa.php" method="post">
+                       <h1 class="card-title">HTML Data Extractor</h1>
+                        <form action="index.php" method="post">
                             Database Username: <input type="text" name="username" class="form-control">
                             Database Password: <input type="password" name="password" class="form-control">
                             Database Schema:   <input type="text" name="schema" class="form-control">
@@ -100,6 +103,9 @@ if($_POST) {
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="col">
+                
             </div>
         </div>
     </div>
