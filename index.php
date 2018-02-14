@@ -20,7 +20,7 @@ if($_POST) {
     $tag = explode(", ", $_POST['tags']);
     $num_col = $_POST['num_columns'];
     $file = $_POST['file'];
-    
+    $html_bool = $_POST['html'];
 
     //Connect to database
     if ($conn = mysqli_connect('localhost', $user, $pass, $schema)) {
@@ -30,7 +30,7 @@ if($_POST) {
       echo '<div class="alert alert-danger" role="alert">
                 Failed to make a connection to the database. Please check your password and username.
             </div>';
-
+            exit();
     }
     //Get file
     $output = file_get_contents($file);
@@ -44,15 +44,20 @@ if($_POST) {
 
     $num_rows = count($row);
     
+    $message = '<div class="alert alert-success" role="alert"><h1 class="text-center">Data Output</h1>';
 
     $row_array = array();
     $c = 1;
     for($x = 0; $x < $num_rows; $x++) {
-        //Strip HTML and add value to Row Array
-        $row_array[] = "'" . strip_tags($row[$x]) . "'";
-        
+        if(!isset($html_bool) && $html_bool != "true") {
+            //Strip HTML and add value to Row Array
+            $row_array[] = "'" . strip_tags($row[$x]) . "'";
+        } else {
+            //Keep HTML and add value to Row Array
+            $row_array[] = "'" . $row[$x] . "'";
+        }
         //Echo Output
-        echo "Line " . $x . ":" . strip_tags($row[$x]) . "<br>";
+        $message .= "Line " . $x . ":" . strip_tags($row[$x]) . "<br>";
         
         //If we come to the end of a row, insert its values into the SQL table
         if($c % $num_col == 0) {
@@ -76,10 +81,12 @@ if($_POST) {
             $values = "";
             $row_array = array();
 
-            echo "<b>END OF ROW</b> <br>";
+            $message .= "<b>END OF ROW</b> <br>";
         }
         $c++;
     }
+    $message .= "</div>";
+    echo $message;
 }
 ?>
         <div class="row">
@@ -99,6 +106,9 @@ if($_POST) {
                             Tags to Extract Data from (Opening and closing separated by comma & a space): <input type="text" name="tags" class="form-control" placeholder="<td>, </td>">
                             Number of Columns in HTML Table: <input type="number" name="num_columns" class="form-control">
                             HTML File To Extract Data from: <input type="text" name="file" class="form-control" placeholder="/home/user/Documents/data.html">
+                            <div class="form-check">
+                                <input type="checkbox" name="html" class="form-check-input" value="true"> Keep HTML
+                            </div>
                             <button class="btn btn-primary form-control">Extract Data</button>
                         </form>
                     </div>
